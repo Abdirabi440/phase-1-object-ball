@@ -7,3 +7,108 @@
 <script src="./src/00-objectball.js"></script>
 <script src="./src/01-simple-debug.js"></script>
 <!-- <script src="./src/02-advanced-debug.js"></script> -->
+function gameObject() {
+  return {
+    home: {
+      teamName: "Brooklyn Nets",
+      colors: ["Black", "White"],
+      players: {
+        "Alan Anderson": {
+          number: 0,
+          shoe: 16,
+          points: 22,
+          rebounds: 12,
+          assists: 12,
+          steals: 3,
+          blocks: 1,
+          slamDunks: 1
+        },
+        // Add more players...
+      }
+    },
+    away: {
+      teamName: "Charlotte Hornets",
+      colors: ["Turquoise", "Purple"],
+      players: {
+        "Jeff Adrien": {
+          number: 4,
+          shoe: 18,
+          points: 10,
+          rebounds: 1,
+          assists: 1,
+          steals: 2,
+          blocks: 7,
+          slamDunks: 2
+        },
+      }
+    }
+  };
+}
+
+
+function numPointsScored(playerName) {
+  let game = gameObject();
+  for (let team in game) {
+    let teamObj = game[team].players;
+    if (playerName in teamObj) {
+      return teamObj[playerName].points;
+    }
+  }
+}
+
+
+function shoeSize(playerName) {
+  let game = gameObject();
+  for (let team in game) {
+    let teamObj = game[team].players;
+    if (playerName in teamObj) {
+      return teamObj[playerName].shoe;
+    }
+  }
+}
+
+
+function teamColors(teamName) {
+  let game = gameObject();
+  for (let team in game) {
+    if (game[team].teamName === teamName) {
+      return game[team].colors;
+    }
+  }
+}
+
+
+function teamNames() {
+  let game = gameObject();
+  let teams = [];
+  for (let team in game) {
+    teams.push(game[team].teamName);
+  }
+  return teams;
+}
+
+
+function playerNumbers(teamName) {
+  let game = gameObject();
+  let numbers = [];
+  for (let team in game) {
+    if (game[team].teamName === teamName) {
+      for (let player in game[team].players) {
+        numbers.push(game[team].players[player].number);
+      }
+    }
+  }
+  return numbers;
+}
+
+
+function playerStats(playerName) {
+  let game = gameObject();
+  for (let team in game) {
+    let teamObj = game[team].players;
+    if (playerName in teamObj) {
+      return teamObj[playerName];
+    }
+  }
+}
+
